@@ -4,9 +4,9 @@
 
 @section('content')
 
-   <a href="/service/create">Create new service</a>
 
-   <h2>New Services</h2>
+   <h1>New Services</h1>
+   <a href="/service/create">Create new service</a>
 
    <ul>
    @forelse ($services as $service)

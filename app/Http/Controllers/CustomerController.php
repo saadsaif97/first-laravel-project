@@ -10,14 +10,15 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        $customers = DB::table('customers')->get($columns = ['*']);
+        $customers = DB::table('customers')->where('active', request('active', 1))->get();
 
         return view('customer.index', compact('customers'));
     }
 
     public function create()
     {
-        return view('customer.create');
+        $customer = new Customer();
+        return view('customer.create', compact('customer'));
     }
 
     public function store()

@@ -25,11 +25,9 @@ class ServiceController extends Controller
             'name' => 'bail|required|unique:services'
         ]);
 
-        DB::table('services')->insert([
-            'name' => $validated
-        ]);
+        $service = \App\Models\Service::create($validated);
 
-        return redirect('/service');
+        return redirect('/service/' . $service->id);
     }
 
     public function show(\App\Models\Service $service)
