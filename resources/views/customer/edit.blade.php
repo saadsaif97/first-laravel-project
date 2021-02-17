@@ -21,8 +21,10 @@
          <p style="color:orangered">@error('email') {{ $message }} @enderror</p>
       </div>
       <div>
+         <a href="/customer"> < Back</a>
          <input type="submit" value="Save">
       </div>
    </form>
+
    
 @endsection

@@ -41,3 +41,14 @@ class Customer extends Model
         return view('customer.show', compact('customer'));
     }
 ```
+
+-   ignore unique validation for self but apply on all others while updating email
+
+```
+    // email validation: ignore self in unique validation
+    $data = request()->validate([
+        'name' => 'required',
+        'email' => ['required','email',\Illuminate\Validation\Rule::unique('customers')->ignore($customer)]
+    ]);
+
+```
