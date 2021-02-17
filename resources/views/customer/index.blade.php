@@ -8,7 +8,7 @@
 
    <ul>
       @forelse($customers as $customer)
-         <li><strong><a href="/customer/{{ $customer->id }}">{{ $customer->name }}</a></strong> | {{ $customer->email }}</li>
+         <li><strong><a href="/customer/{{ $customer->id }}">{{ $customer->name }}</a></strong> | {{ $customer->email }} | <a href="/customer/{{ $customer->id }}/edit">Edit</a></li>
       @empty
          <li>No customer yet</li>
       @endforelse

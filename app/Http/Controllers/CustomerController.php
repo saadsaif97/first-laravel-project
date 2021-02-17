@@ -37,4 +37,23 @@ class CustomerController extends Controller
     {
         return view('customer.show', compact('customer'));
     }
+
+    public function edit(\App\Models\Customer $customer)
+    {
+        return view('customer.edit', compact('customer'));
+    }
+
+    public function update(\App\Models\Customer $customer)
+    {
+
+        // email validation: ignore self in unique validation
+        $data = request()->validate([
+            'name' => 'required',
+            'email' => ['required','email',\Illuminate\Validation\Rule::unique('customers')->ignore($customer)]
+        ]);
+
+        $customer->update($data);
+
+        return redirect('/customer');
+    }
 }
