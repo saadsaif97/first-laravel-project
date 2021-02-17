@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use \App\Models\Customer;
 
 class CustomerController extends Controller
 {
@@ -27,23 +28,23 @@ class CustomerController extends Controller
             'email' => 'bail|required|email|unique:customers'
         ]);
 
-        \App\Models\Customer::create($data);
+        $customer = Customer::create($data);
 
-        return redirect('/customer');
+        return redirect('/customer/' . $customer->id);
     }
 
     // Route model binding
-    public function show(\App\Models\Customer $customer)
+    public function show(Customer $customer)
     {
         return view('customer.show', compact('customer'));
     }
 
-    public function edit(\App\Models\Customer $customer)
+    public function edit(Customer $customer)
     {
         return view('customer.edit', compact('customer'));
     }
 
-    public function update(\App\Models\Customer $customer)
+    public function update(Customer $customer)
     {
 
         // email validation: ignore self in unique validation
@@ -55,5 +56,11 @@ class CustomerController extends Controller
         $customer->update($data);
 
         return redirect('/customer');
+    }
+
+    public function destroy(Customer $customer)
+    {
+        DB::table('customers')->delete($customer->id);
+        return redirect()->back();
     }
 }

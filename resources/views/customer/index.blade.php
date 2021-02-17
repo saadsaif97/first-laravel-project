@@ -8,7 +8,15 @@
 
    <ul>
       @forelse($customers as $customer)
-         <li><strong><a href="/customer/{{ $customer->id }}">{{ $customer->name }}</a></strong> | {{ $customer->email }} | <a href="/customer/{{ $customer->id }}/edit">Edit</a></li>
+         <li style='margin: 10px 0;'><strong><a href="/customer/{{ $customer->id }}"> {{ $customer->name }}</a></strong> | 
+         {{ $customer->email }} | 
+         <a href="/customer/{{ $customer->id }}/edit">Edit</a>
+         <form action="/customer/{{ $customer->id }}" method="post" style="display: inline-block;">
+            @method('DELETE')
+            @csrf
+            <input type="submit" value="Delete">
+         </form>
+         </li>
       @empty
          <li>No customer yet</li>
       @endforelse

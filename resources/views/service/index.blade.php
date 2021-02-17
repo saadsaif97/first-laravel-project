@@ -4,27 +4,24 @@
 
 @section('content')
 
-   <form action="/service" method="post">
-      <input type="text" autocomplete="false" name="name">
-      @csrf
-      <button type="submit">Create</button>
-   </form>
-
-   <p style="color: orangered;"> @error('name') {{ $message }} @enderror </p>
-
-   <h1>Services</h1>
-   <ul>
-      <li>Ding</li>
-      <li>Dong</li>
-      <li>DING Dong</li>
-   </ul>
-   <ul>
+   <a href="/service/create">Create new service</a>
 
    <h2>New Services</h2>
+
+   <ul>
    @forelse ($services as $service)
-      <li> {{ $service->name }} </li>
+      <li style="margin: 10px 0;">
+         <a href="/service/{{ $service->id }}">{{ $service->name }}</a> 
+         <a href="/service/{{ $service->id }}/edit" style="color: gray;">Edit</a>
+         <form action="/service/{{ $service->id }}" method="post" style="display: inline-block;">
+            @method('delete')
+            @csrf
+            <input type="submit" value="Delete">
+         </form>
+      </li>
    @empty
       <li>No services yet</li>
    @endforelse
    </ul>
+
 @endsection
