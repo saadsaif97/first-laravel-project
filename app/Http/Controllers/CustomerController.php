@@ -31,4 +31,10 @@ class CustomerController extends Controller
 
         return redirect('/customer');
     }
+
+    // Route model binding
+    public function show(\App\Models\Customer $customer)
+    {
+        return view('customer.show', compact('customer'));
+    }
 }

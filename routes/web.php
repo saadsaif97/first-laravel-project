@@ -25,4 +25,5 @@ Route::post('/service', 'App\Http\Controllers\ServiceController@store');
 
 Route::get('/customer', 'App\Http\Controllers\CustomerController@index');
 Route::get('/customer/create', 'App\Http\Controllers\CustomerController@create');
+Route::get('/customer/{customer}', 'App\Http\Controllers\CustomerController@show');
 Route::post('/customer', 'App\Http\Controllers\CustomerController@store');
