@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,11 @@ Route::get('/', 'App\Http\Controllers\HomeController@home');
 
 Route::get('/about', function(){
     return view('about');
+});
+
+
+Route::get('/email', function(){
+    return new WelcomeMail();
 });
 
 

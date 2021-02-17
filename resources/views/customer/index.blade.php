@@ -7,7 +7,7 @@
 
    <h1>Customers</h1>
 
-   <a href="/customer" style="margin-bottom:10px">Create new customer</a>
+   <a href="/customer/create" style="margin-bottom:10px">Create new customer</a>
    <a href="/customer?active=1">Active</a>
    <a href="/customer?active=0">Inactive</a>
 

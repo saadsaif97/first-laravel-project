@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use \App\Models\Customer;
+use Illuminate\Support\Facades\Mail;
 
 class CustomerController extends Controller
 {
@@ -18,6 +20,7 @@ class CustomerController extends Controller
     public function create()
     {
         $customer = new Customer();
+
         return view('customer.create', compact('customer'));
     }
 
@@ -30,6 +33,8 @@ class CustomerController extends Controller
         ]);
 
         $customer = Customer::create($data);
+
+        Mail::to($customer->email)->send(new WelcomeMail());
 
         return redirect('/customer/' . $customer->id);
     }
